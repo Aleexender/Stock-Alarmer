@@ -3,7 +3,7 @@
 .gradle/
 build/
 !gradle/wrapper/gradle-wrapper.jar  # Gradle Wrapper 실행 파일 유지
-gradle/wrapper/gradle-wrapper.properties  # properties 파일 제외
+gradle/wrapper/gradle-wrapper.properties
 gradlew
 gradlew.bat
 
