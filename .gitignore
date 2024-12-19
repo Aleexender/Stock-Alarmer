@@ -155,3 +155,8 @@ hs_err_pid*
 replay_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all,java
+
+# Gradle Wrapper
+gradle/wrapper/gradle-wrapper.jar
+gradlew
+gradlew.bat
