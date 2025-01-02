@@ -1,4 +1,4 @@
-package org.example.stock_alarmer.user.entity;
+package org.example.stock_alarmer.module.user.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;
