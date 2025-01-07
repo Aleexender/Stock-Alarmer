@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 
 import java.time.format.DateTimeFormatter;
 
-@Component
 public class AlphaVantageDateFormatter extends DateFormatter {
 
     @Override
