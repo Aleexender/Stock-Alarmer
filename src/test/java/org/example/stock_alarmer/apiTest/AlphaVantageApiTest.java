@@ -9,7 +9,6 @@ import reactor.core.publisher.Mono;
 
 public class AlphaVantageApiTest {
 
-    private final String API_KEY = "9SHINKNO1ZLII20Z";
     private final String BASE_URL = "https://www.alphavantage.co/query";
 
     private final WebClient webClient = WebClient.create(BASE_URL);
