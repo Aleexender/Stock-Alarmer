@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.properties")
-class AlphaVantageConfigTest {
+class AlphaVantagePropertiesTest {
     @Autowired
     private AlphaVantageProperties alphaVantageConfig;
 

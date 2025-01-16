@@ -2,12 +2,11 @@ package org.example.stockAlarmer.global.exception;
 
 import org.springframework.http.HttpStatus;
 
-import java.lang.Error;
-
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
 public enum StockError implements Error {
-    PARAMETER_VIOLATION_ERROR("S001",INTERNAL_SERVER_ERROR,"올바르지 않은 데이터입니다.");
+    PARAMETER_VIOLATION_ERROR("S001", INTERNAL_SERVER_ERROR, "올바르지 않은 데이터입니다."),
+    ;
 
     private final String code;
     private final HttpStatus status;
