@@ -67,7 +67,6 @@ class AlphaVantageStockApiTest {
                 responseConverter
         );
 
-        // 단순한 응답 설정 - 실제 API처럼 순수 텍스트만 반환
         mockWebServer.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(MOCK_LISTING_STATUS_RESPONSE));
@@ -76,7 +75,7 @@ class AlphaVantageStockApiTest {
     @Test
     void whenFetchInfo_thenReturnsCorrectStockList() throws InterruptedException {
         // API 호출
-        List<Stock> stocks = alphaVantageStockApi.fetchInfo(); // TODO 리스트 사이즈는 맞는데 값이 안들어감
+        List<Stock> stocks = alphaVantageStockApi.fetchInfo();
 
         // 요청 검증
         RecordedRequest recordedRequest = mockWebServer.takeRequest();
