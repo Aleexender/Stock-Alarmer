@@ -1,8 +1,8 @@
 package org.example.stockAlarmer.module.stock.presentation;
 
 import lombok.RequiredArgsConstructor;
-import org.example.stock_alarmer.global.common.ApiResponse;
-import org.example.stock_alarmer.module.stock.application.StockService;
+import org.example.stockAlarmer.global.common.ApiResponse;
+import org.example.stockAlarmer.module.stock.application.StockService;
 import org.example.stockAlarmer.module.stock.domain.Stock;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
