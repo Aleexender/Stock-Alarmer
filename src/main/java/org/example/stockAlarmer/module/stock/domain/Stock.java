@@ -31,5 +31,10 @@ public class Stock {
 
     private String status;
 
+
+    public void validate() {
+        // validation logic
+    }
+
 }
 
