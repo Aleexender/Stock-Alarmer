@@ -1,20 +1,25 @@
 package org.example.stockAlarmer.module.stock.application;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.stockAlarmer.infra.stock.StockApi;
 import org.example.stockAlarmer.module.stock.domain.Stock;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import reactor.core.publisher.Flux;
 
-import java.util.List;
+import java.time.Duration;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class StockService {
     private final StockApi stockApi;
 
-    @Transactional(readOnly = true)
-    public List<Stock> getAllInfo() {
-        return stockApi.fetchInfo();
+    public Flux<Stock> getAllInfo() {
+        return stockApi.fetchInfo()
+                .doOnNext(Stock::validate)
+                .doOnError(error -> log.error("Error while processing stocks", error))
+                .onErrorResume(error -> Flux.empty())
+                .timeout(Duration.ofSeconds(5));
     }
 }

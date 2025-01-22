@@ -2,7 +2,6 @@ package org.example.stockAlarmer.infra.stock.web;
 
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
-import okhttp3.mockwebserver.RecordedRequest;
 import org.example.stockAlarmer.global.date.DateFormatter;
 import org.example.stockAlarmer.infra.stock.ResponseConverter;
 import org.example.stockAlarmer.module.stock.domain.Stock;
@@ -14,10 +13,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
+import reactor.test.StepVerifier;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -73,33 +72,27 @@ class AlphaVantageStockApiTest {
     }
 
     @Test
-    void whenFetchInfo_thenReturnsCorrectStockList() throws InterruptedException {
-        // API 호출
-        List<Stock> stocks = alphaVantageStockApi.fetchInfo();
+    void whenFetchInfo_thenReturnsCorrectStockList()  {
+        Flux<Stock> stocks = alphaVantageStockApi.fetchInfo();
 
-        // 요청 검증
-        RecordedRequest recordedRequest = mockWebServer.takeRequest();
-
-        // 기대하는 쿼리 파라미터들이 모두 포함되어 있는지 검증
-        String path = recordedRequest.getPath();
-        assertThat(path)
-                .contains("function=LISTING_STATUS")
-                .contains("apikey=demo")
-                .contains("state=active")
-                .contains("date=")  // 날짜는 동적으로 변하므로 존재 여부만 확인
-                .startsWith("/query?");  // 기본 경로 확인
-
-        assertThat(stocks)
-                .isNotEmpty()
-                .hasSize(3);
-
-        Stock firstStock = stocks.get(0);
-        assertThat(firstStock)
-                .satisfies(stock -> {
+        StepVerifier.create(stocks)
+                // 각 Stock 객체의 값을 출력하면서 검증
+                .consumeNextWith(stock -> {
                     assertThat(stock.getSymbol()).isEqualTo("A");
                     assertThat(stock.getName()).isEqualTo("Agilent Technologies Inc");
                     assertThat(stock.getExchange()).isEqualTo("NYSE");
-                });
+                })
+                .consumeNextWith(stock -> {
+                    assertThat(stock.getSymbol()).isEqualTo("AA");
+                    assertThat(stock.getName()).isEqualTo("Alcoa Corp");
+                    assertThat(stock.getExchange()).isEqualTo("NYSE");
+                })
+                .consumeNextWith(stock -> {
+                    assertThat(stock.getSymbol()).isEqualTo("AAA");
+                    assertThat(stock.getName().trim()).isEqualTo("ALTERNATIVE ACCESS FIRST PRIORITY CLO BOND ETF");
+                    assertThat(stock.getExchange()).isEqualTo("NYSE ARCA");
+                })
+                .verifyComplete();
     }
 
     @AfterEach

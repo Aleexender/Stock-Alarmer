@@ -4,14 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.example.stockAlarmer.global.common.ApiResponse;
 import org.example.stockAlarmer.module.stock.application.StockService;
 import org.example.stockAlarmer.module.stock.domain.Stock;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 import java.util.List;
-
-import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,10 +17,10 @@ public class StockController {
     private final StockService stockService;
 
     @GetMapping
-    @ResponseStatus(OK)
-    public ApiResponse<List<Stock>> stocks(){
-        var result = stockService.getAllInfo();
-        return ApiResponse.ok(result);
+    @ResponseStatus(HttpStatus.OK)
+    public Mono<ApiResponse<List<Stock>>> stocks() {
+        return stockService.getAllInfo()
+                .collectList()
+                .map(ApiResponse::ok);
     }
-
 }

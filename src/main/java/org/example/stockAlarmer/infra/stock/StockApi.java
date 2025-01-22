@@ -1,10 +1,9 @@
 package org.example.stockAlarmer.infra.stock;
 
 import org.example.stockAlarmer.module.stock.domain.Stock;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
 
 public interface StockApi {
 
-    List<Stock> fetchInfo();
+    Flux<Stock> fetchInfo();
 }
