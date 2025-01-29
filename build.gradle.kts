@@ -29,6 +29,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-web-services")
 	implementation("org.springframework.boot:spring-boot-starter-webflux")
+	implementation ("org.springframework.boot:spring-boot-starter-mail")
 
 	// 유틸리티 라이브러리
 	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.15.2")
