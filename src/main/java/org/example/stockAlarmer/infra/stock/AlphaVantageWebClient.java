@@ -1,4 +1,4 @@
-package org.example.stockAlarmer.infra.stock.web;
+package org.example.stockAlarmer.infra.stock;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

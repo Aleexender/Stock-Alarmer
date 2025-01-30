@@ -1,4 +1,4 @@
-package org.example.stockAlarmer.infra.stock.web;
+package org.example.stockAlarmer.infra.stock;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

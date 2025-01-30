@@ -1,6 +1,5 @@
-package org.example.stockAlarmer.module.stock.mapper;
+package org.example.stockAlarmer.module.stock.domain;
 
-import org.example.stockAlarmer.module.stock.domain.Stock;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
