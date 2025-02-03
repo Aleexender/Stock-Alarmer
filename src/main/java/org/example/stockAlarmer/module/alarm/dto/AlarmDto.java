@@ -6,7 +6,8 @@ public sealed interface AlarmDto permits SubscribeDto {
     record SubscribeDto(
             String name,
             String symbol,
-            Double price
+            Double price,
+            String messengerType
     ) implements AlarmDto {
         public SubscribeDto {
             if (name == null || name.isBlank()) {
