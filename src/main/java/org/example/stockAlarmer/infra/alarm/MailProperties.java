@@ -1,4 +1,4 @@
-package org.example.stockAlarmer.module.alarm.application.messenger;
+package org.example.stockAlarmer.infra.alarm;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

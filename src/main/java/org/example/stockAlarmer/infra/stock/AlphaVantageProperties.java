@@ -1,4 +1,4 @@
-package org.example.stockAlarmer.infra.stock.web;
+package org.example.stockAlarmer.infra.stock;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

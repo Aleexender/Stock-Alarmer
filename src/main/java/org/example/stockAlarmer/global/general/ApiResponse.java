@@ -1,4 +1,4 @@
-package org.example.stockAlarmer.global.common;
+package org.example.stockAlarmer.global.general;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

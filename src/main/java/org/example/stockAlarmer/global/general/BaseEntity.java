@@ -1,4 +1,4 @@
-package org.example.stockAlarmer.global.common;
+package org.example.stockAlarmer.global.general;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.Id;

@@ -1,15 +1,13 @@
 package org.example.stockAlarmer.module.alarm.domain;
 
-
 import jakarta.persistence.Entity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.example.stockAlarmer.global.common.BaseEntity;
+import org.example.stockAlarmer.global.general.BaseEntity;
 
 import java.time.LocalDate;
-
 
 @Entity
 @Getter
@@ -26,6 +24,10 @@ public class Alarm extends BaseEntity {
     private LocalDate createdAt = LocalDate.now();
 
     private LocalDate updatedAt;
+
+    public Alarm(String name, String symbol, Double price) {
+        this(name, symbol, price, LocalDate.now(), null);
+    }
 
     public static Alarm create(String name, String symbol, Double price) {
         return new Alarm( name, symbol, price, LocalDate.now(), null);

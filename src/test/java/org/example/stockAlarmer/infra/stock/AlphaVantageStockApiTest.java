@@ -1,9 +1,8 @@
-package org.example.stockAlarmer.infra.stock.web;
+package org.example.stockAlarmer.infra.stock;
 
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.example.stockAlarmer.global.date.DateFormatter;
-import org.example.stockAlarmer.infra.stock.ResponseConverter;
 import org.example.stockAlarmer.module.stock.domain.Stock;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
