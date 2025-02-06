@@ -1,7 +1,7 @@
 package org.example.stockAlarmer.module.stock.presentation;
 
 import lombok.RequiredArgsConstructor;
-import org.example.stockAlarmer.global.common.ApiResponse;
+import org.example.stockAlarmer.global.general.ApiResponse;
 import org.example.stockAlarmer.module.stock.application.StockService;
 import org.example.stockAlarmer.module.stock.domain.Stock;
 import org.springframework.http.HttpStatus;

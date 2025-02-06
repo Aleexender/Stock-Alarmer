@@ -2,16 +2,13 @@ package org.example.stockAlarmer.module.stock.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
 @Getter
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Stock {
 
@@ -29,7 +26,6 @@ public class Stock {
     private LocalDate delistingDate;
 
     private String status;
-
 
     public void validate() {
         // validation logic
