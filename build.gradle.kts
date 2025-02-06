@@ -43,16 +43,23 @@ dependencies {
 	// MapStruct 설정
 	implementation("org.mapstruct:mapstruct:1.5.5.Final")
 	annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
-	implementation("org.projectlombok:lombok-mapstruct-binding:0.2.0")
+	annotationProcessor("org.projectlombok:lombok-mapstruct-binding:0.2.0")
+
+	implementation("com.github.ben-manes.caffeine:caffeine:3.1.8")
 
 
 	// 테스트 관련 의존성
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
-		exclude(module = "mockito-core")
 	}
 	testImplementation("com.squareup.okhttp3:mockwebserver:4.12.0")
 	testImplementation("io.projectreactor:reactor-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+	// Mockito Core 추가
+	testImplementation("org.mockito:mockito-core:5.6.0")
+
+	// JUnit 5와 함께 사용하는 Mockito 추가
+	testImplementation("org.mockito:mockito-junit-jupiter:5.6.0")
 }
 
 tasks.withType<JavaCompile> {
