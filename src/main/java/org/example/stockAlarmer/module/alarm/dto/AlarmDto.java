@@ -6,6 +6,7 @@ public sealed interface AlarmDto permits SubscribeDto {
     record SubscribeDto(
             String name,
             String symbol,
+            String email,
             Double price,
             String messengerType
     ) implements AlarmDto {

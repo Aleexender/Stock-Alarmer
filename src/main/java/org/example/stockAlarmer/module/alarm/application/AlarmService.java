@@ -16,6 +16,6 @@ public class AlarmService {
     public void subscribe(AlarmDto.SubscribeDto request) {
         var alarm = AlarmMapper.toDomain(request);
         alarmRepository.save(alarm);
-        messengerService.send(request.messengerType(),"Alarm subscribed"); // todo fix the parms
+        messengerService.send(request.messengerType(),request.email(),"Alarm subscribed"); // todo fix the parms
     }
 }
