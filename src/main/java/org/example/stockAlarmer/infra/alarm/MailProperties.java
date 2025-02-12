@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @RequiredArgsConstructor
-@ConfigurationProperties(prefix = "mail")
+@ConfigurationProperties(prefix = "spring.mail")
  class MailProperties {
     private final String host;
     private final String username;

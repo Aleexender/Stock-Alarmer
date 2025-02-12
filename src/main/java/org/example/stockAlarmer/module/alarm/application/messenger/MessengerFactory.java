@@ -8,11 +8,11 @@ import java.util.Map;
 @Component
 @RequiredArgsConstructor
 public class MessengerFactory {
-    private Map<String, Messenger> messengers;
+    private final Map<String, Messenger> messengers;
 
     public Messenger create(String type) {
         return switch (type) {
-            case "Mail" -> messengers.get("Mail");
+            case "EMAIL" -> messengers.get("EMAIL");
             default -> throw new IllegalStateException("Unexpected value: " + type);
         };
     }
