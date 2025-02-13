@@ -17,11 +17,12 @@ public class AlarmService {
     @Transactional
     public void subscribe(AlarmDto.SubscribeDto request) {
         var alarm = AlarmMapper.toDomain(request);
-        alarmRepository.findByName(request.name())
+
+        alarmRepository.findByEmailAndSymbol(request.email(), request.symbol())
                 .ifPresentOrElse(
-                        alarmByName -> alarmByName.updateThreshold(request.price()),
+                        existingAlarm -> existingAlarm.updateThreshold(request.price()),
                         () -> alarmRepository.save(alarm)
                 );
-        messengerService.send(request.messengerType(),request.email(),request.name()+" is subscribed");
+        messengerService.send(request.messengerType(),request.email(),"Dear " +  request.name() + " " + request.name()+" is subscribed");
     }
 }
