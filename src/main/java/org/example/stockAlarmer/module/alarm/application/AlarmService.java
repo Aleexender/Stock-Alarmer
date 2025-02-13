@@ -23,6 +23,6 @@ public class AlarmService {
                         existingAlarm -> existingAlarm.updateThreshold(request.price()),
                         () -> alarmRepository.save(alarm)
                 );
-        messengerService.send(request.messengerType(),request.email(),"Dear " +  request.name() + " " + request.name()+" is subscribed");
+        messengerService.send(request.messengerType(), request.email(), "Dear " + request.name() + " stock name:  " + request.symbol() + " is subscribed");
     }
 }
