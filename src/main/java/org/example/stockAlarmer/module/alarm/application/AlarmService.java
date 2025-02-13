@@ -1,5 +1,6 @@
 package org.example.stockAlarmer.module.alarm.application;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.example.stockAlarmer.module.alarm.application.messenger.MessengerService;
 import org.example.stockAlarmer.module.alarm.domain.AlarmRepository;
@@ -13,9 +14,14 @@ public class AlarmService {
     private final AlarmRepository alarmRepository;
     private final MessengerService messengerService;
 
+    @Transactional
     public void subscribe(AlarmDto.SubscribeDto request) {
         var alarm = AlarmMapper.toDomain(request);
-        alarmRepository.save(alarm);
-        messengerService.send(request.messengerType(),request.email(),"Alarm subscribed"); // todo fix the parms
+        alarmRepository.findByName(request.name())
+                .ifPresentOrElse(
+                        alarmByName -> alarmByName.updateThreshold(request.price()),
+                        () -> alarmRepository.save(alarm)
+                );
+        messengerService.send(request.messengerType(),request.email(),request.name()+" is subscribed");
     }
 }

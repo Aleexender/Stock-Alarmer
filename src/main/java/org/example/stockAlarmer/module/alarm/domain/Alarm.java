@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.stockAlarmer.global.general.BaseEntity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -21,26 +21,26 @@ public class Alarm extends BaseEntity {
 
     private Double price;
 
-    private LocalDate createdAt = LocalDate.now();
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-    private LocalDate updatedAt;
+    private LocalDateTime updatedAt;
 
     public Alarm(String name, String symbol, Double price) {
-        this(name, symbol, price, LocalDate.now(), null);
+        this(name, symbol, price, LocalDateTime.now(), null);
     }
 
     public static Alarm create(String name, String symbol, Double price) {
-        return new Alarm( name, symbol, price, LocalDate.now(), null);
+        return new Alarm( name, symbol, price, LocalDateTime.now(), null);
     }
 
-    public void updatePrice(Double newPrice) {
-        this.price = newPrice;
-        this.updatedAt = LocalDate.now();
+    public void updateThreshold(Double newThreshold) {
+        this.price = newThreshold;
+        this.updatedAt = LocalDateTime.now();
     }
 
-    public void updateSymbol(String newSymbol) {
-        this.symbol = newSymbol;
-        this.updatedAt = LocalDate.now();
+    public void modifyCode(String newCode) {
+        this.symbol = newCode;
+        this.updatedAt = LocalDateTime.now();
     }
 
 }
