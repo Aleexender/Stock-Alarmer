@@ -7,7 +7,7 @@ public interface AlarmMapper {
 
 
     static Alarm toDomain(AlarmDto.SubscribeDto dto) {
-        return Alarm.create(dto.name(), dto.symbol(), dto.price());
+        return Alarm.create(dto.name(), dto.email(), dto.symbol(), dto.price());
     }
 
 }

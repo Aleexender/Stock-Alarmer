@@ -35,6 +35,7 @@ dependencies {
 	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-csv:2.15.2")
 	implementation("mysql:mysql-connector-java:8.0.33")
 	implementation("org.apache.commons:commons-csv:1.10.0")
+	implementation("org.jetbrains:annotations:24.0.0")
 
 	// Lombok 설정
 	compileOnly("org.projectlombok:lombok")

@@ -1,25 +1,19 @@
 package org.example.stockAlarmer.module.alarm.dto;
 
-import static org.example.stockAlarmer.module.alarm.dto.AlarmDto.*;
+import org.jetbrains.annotations.NotNull;
 
+import static org.example.stockAlarmer.module.alarm.dto.AlarmDto.SubscribeDto;
 public sealed interface AlarmDto permits SubscribeDto {
     record SubscribeDto(
             String name,
+            @NotNull
             String symbol,
+            @NotNull
             String email,
+            @NotNull
             Double price,
             String messengerType
     ) implements AlarmDto {
-        public SubscribeDto {
-            if (name == null || name.isBlank()) {
-                throw new IllegalArgumentException("Name cannot be null or empty");
-            }
-            if (symbol == null || symbol.isBlank()) {
-                throw new IllegalArgumentException("Symbol cannot be null or empty");
-            }
-            if (price == null || price < 0) {
-                throw new IllegalArgumentException("Price cannot be null or negative");
-            }
-        }
+
     }
 }
