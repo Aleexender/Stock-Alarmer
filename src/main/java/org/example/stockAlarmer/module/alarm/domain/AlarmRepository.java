@@ -7,7 +7,6 @@ import java.util.Optional;
 
 @Repository
 public interface AlarmRepository extends JpaRepository<Alarm,Long> {
-    boolean existsByName(String name);
+    Optional<Alarm> findByEmailAndSymbol(String email, String symbol);
 
-    Optional<Alarm> findByName(String name);
 }
