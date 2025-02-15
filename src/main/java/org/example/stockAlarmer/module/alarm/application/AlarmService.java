@@ -20,7 +20,7 @@ public class AlarmService {
 
         alarmRepository.findByEmailAndSymbol(request.email(), request.symbol())
                 .ifPresentOrElse(
-                        existingAlarm -> existingAlarm.updateThreshold(request.price()),
+                        existingAlarm -> existingAlarm.adjust(request.price()),
                         () -> alarmRepository.save(alarm)
                 );
         messengerService.send(request.messengerType(), request.email(), "Dear " + request.name() + " stock name:  " + request.symbol() + " is subscribed");

@@ -40,13 +40,13 @@ public class Alarm extends BaseEntity {
         return new Alarm(name, email, symbol, price, LocalDateTime.now(), null);
     }
 
-    public void updateThreshold(Double newThreshold) {
-        this.price = newThreshold;
+    public void adjust(Double price) {
+        this.price = price;
         this.updatedAt = LocalDateTime.now();
     }
 
-    public void modifyCode(String newCode) {
-        this.symbol = newCode;
+    public void modify(String symbol) {
+        this.symbol = symbol;
         this.updatedAt = LocalDateTime.now();
     }
 
