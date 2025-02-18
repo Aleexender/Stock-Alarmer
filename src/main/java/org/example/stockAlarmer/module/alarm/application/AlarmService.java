@@ -8,6 +8,8 @@ import org.example.stockAlarmer.module.alarm.dto.AlarmDto;
 import org.example.stockAlarmer.module.alarm.mapper.AlarmMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AlarmService {
@@ -24,5 +26,11 @@ public class AlarmService {
                         () -> alarmRepository.save(alarm)
                 );
         messengerService.send(request.messengerType(), request.email(), "Dear " + request.name() + " stock name:  " + request.symbol() + " is subscribed");
+    }
+
+    public List<AlarmDto.GetSubscribeDto> getAlarms(String email) {
+        return alarmRepository.getAlarmsByEmail(email).stream()
+                .map(AlarmMapper::toGetSubscribeDto)
+                .toList();
     }
 }
