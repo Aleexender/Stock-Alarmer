@@ -2,12 +2,12 @@ package org.example.stockAlarmer.infra.stock.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public sealed interface StockInfraDto {
+public sealed interface AlphaStockDto {
 
-    record StockDetailResponseWrapper(
+    record DetailResponseWrapper(
             @JsonProperty("Global Quote") StockDetailResponse stockDetailResponse
-    ) implements StockInfraDto {
-        record StockDetailResponse(
+    ) implements AlphaStockDto {
+        public record StockDetailResponse(
                 @JsonProperty("01. symbol") String symbol,
                 @JsonProperty("02. open") String open,
                 @JsonProperty("03. high") String high,

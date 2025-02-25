@@ -3,9 +3,8 @@ package org.example.stockAlarmer.infra.stock;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.stockAlarmer.global.date.DateFormatter;
-import org.example.stockAlarmer.infra.stock.dto.StockInfraDto;
-import org.example.stockAlarmer.module.stock.application.StockApi;
-import org.example.stockAlarmer.module.stock.domain.Stock;
+import org.example.stockAlarmer.infra.stock.dto.AlphaStockDto;
+import org.example.stockAlarmer.module.stock.dto.StockDto;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
@@ -14,14 +13,13 @@ import reactor.core.publisher.Mono;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-class AlphaVantageStockApi implements StockApi {
+class AlphaVantageStockApi {
     private final WebClient webClient;
     private final AlphaVantageProperties properties;
     private final DateFormatter dateFormatter;
     private final ResponseConverter responseConverter;
 
-    @Override
-    public Flux<Stock> fetchInfo() {
+    public Flux<StockDto.ListResponse> fetchInfo() {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/query")
@@ -37,8 +35,7 @@ class AlphaVantageStockApi implements StockApi {
                 .doOnNext(stock -> log.info("Stock processed: {}", stock));
     }
 
-    @Override
-    public Mono<StockInfraDto.StockDetailResponseWrapper> getDetails(String symbol) {
+    public Mono<AlphaStockDto.DetailResponseWrapper> getDetails(String symbol) {
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .path("/query")
@@ -47,6 +44,6 @@ class AlphaVantageStockApi implements StockApi {
                         .queryParam("apikey", properties.getApiKey())
                         .build())
                 .retrieve()
-                .bodyToMono(StockInfraDto.StockDetailResponseWrapper.class);
+                .bodyToMono(AlphaStockDto.DetailResponseWrapper.class);
     }
 }
