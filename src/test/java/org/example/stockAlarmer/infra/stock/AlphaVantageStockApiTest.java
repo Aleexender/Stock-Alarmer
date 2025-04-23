@@ -3,7 +3,7 @@ package org.example.stockAlarmer.infra.stock;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.example.stockAlarmer.global.date.DateFormatter;
-import org.example.stockAlarmer.module.stock.domain.Stock;
+import org.example.stockAlarmer.module.stock.dto.StockDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -72,24 +72,24 @@ class AlphaVantageStockApiTest {
 
     @Test
     void whenFetchInfo_thenReturnsCorrectStockList()  {
-        Flux<Stock> stocks = alphaVantageStockApi.fetchInfo();
+        Flux<StockDto.ListResponse> stocks = alphaVantageStockApi.fetchInfo();
 
         StepVerifier.create(stocks)
                 // 각 Stock 객체의 값을 출력하면서 검증
                 .consumeNextWith(stock -> {
-                    assertThat(stock.getSymbol()).isEqualTo("A");
-                    assertThat(stock.getName()).isEqualTo("Agilent Technologies Inc");
-                    assertThat(stock.getExchange()).isEqualTo("NYSE");
+                    assertThat(stock.symbol()).isEqualTo("A");
+                    assertThat(stock.name()).isEqualTo("Agilent Technologies Inc");
+                    assertThat(stock.exchange()).isEqualTo("NYSE");
                 })
                 .consumeNextWith(stock -> {
-                    assertThat(stock.getSymbol()).isEqualTo("AA");
-                    assertThat(stock.getName()).isEqualTo("Alcoa Corp");
-                    assertThat(stock.getExchange()).isEqualTo("NYSE");
+                    assertThat(stock.symbol()).isEqualTo("AA");
+                    assertThat(stock.name()).isEqualTo("Alcoa Corp");
+                    assertThat(stock.exchange()).isEqualTo("NYSE");
                 })
                 .consumeNextWith(stock -> {
-                    assertThat(stock.getSymbol()).isEqualTo("AAA");
-                    assertThat(stock.getName().trim()).isEqualTo("ALTERNATIVE ACCESS FIRST PRIORITY CLO BOND ETF");
-                    assertThat(stock.getExchange()).isEqualTo("NYSE ARCA");
+                    assertThat(stock.symbol()).isEqualTo("AAA");
+                    assertThat(stock.name().trim()).isEqualTo("ALTERNATIVE ACCESS FIRST PRIORITY CLO BOND ETF");
+                    assertThat(stock.exchange()).isEqualTo("NYSE ARCA");
                 })
                 .verifyComplete();
     }
